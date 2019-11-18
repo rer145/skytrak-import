@@ -5,7 +5,7 @@ import urllib.parse
 import pyodbc
 
 
-ROOT_FOLDER = "D:\\golf\\SkyTrak\\logs"
+ROOT_FOLDER = "D:\\projects\\skytrak-import\\logs"
 
 cols = [
     'ShotNumber', 'Hand', 'BallMPG', 'LaunchAngle', 'BackSpinRPM', 'SideSpinRPM',
@@ -33,7 +33,7 @@ def import_file(f):
     #print(df)
 
     params = urllib.parse.quote_plus(
-        "DRIVER={SQL Server Native Client 11.0};SERVER=THISRON;DATABASE=SkyTrak;UID=skytrak;PWD=skytrak")
+        "DRIVER={SQL Server Native Client 11.0};SERVER=localhost;DATABASE=SkyTrak;UID=skytrak;PWD=skytrak")
     engine = sqlalchemy.create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
     conn = engine.connect().connection
     cursor = conn.cursor()
